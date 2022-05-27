@@ -1,23 +1,49 @@
-import React, { Component } from 'react'
-export default class Login extends Component {
-  render() {
-    return (
-      <form>
+import { useState } from 'react';
+
+export default function Login() {
+  const[email, setEmail] = useState("")
+  const[password, setPassword] = useState("")
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("your email is"+email +" and password is"+password)
+    
+  }
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    console.log("email= "+email)  
+  }
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value)
+    console.log("pass= "+password)  
+  }
+
+
+  return (
+      <form
+      onSubmit={handleSubmit}
+      >
         <h3>Sign In</h3>
         <div className="mb-3">
-          <label>Username</label>
+          <label name="email">Email</label>
           <input
-            type="text"
+            value={email}
+            type="email"
             className="form-control"
             placeholder="Enter username"
+            onChange={handleEmailChange}
           />
         </div>
         <div className="mb-3">
-          <label>Password</label>
-          <input
+          <label name="password">Password</label>
+          <input 
+            value={password}
             type="password"
             className="form-control"
             placeholder="Enter password"
+            onChange={handlePasswordChange}
           />
         </div>
         <div className="mb-3">
@@ -42,5 +68,4 @@ export default class Login extends Component {
         </p> */}
       </form>
     )
-  }
 }
