@@ -1,14 +1,10 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useAuth } from '../../context/auth-context'
 
 export default function Login() {
+  const { login, logout, loggedIn} = useAuth();
   const[email, setEmail] = useState("")
   const[password, setPassword] = useState("")
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("your email is"+email +" and password is"+password)
-    
-  }
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -17,32 +13,20 @@ export default function Login() {
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value)
-    console.log("pass= "+password)  
+    console.log("pass= "+ password)  
   }
 
-
   return (
-      <form
-      onSubmit={handleSubmit}
-      >
+      <form>
         <h3>Sign In</h3>
         <div className="mb-3">
           <label name="email">Email</label>
-          <input
-            value={email}
-            type="email"
-            className="form-control"
-            placeholder="Enter username"
-            onChange={handleEmailChange}
+          <input value={email} type="email" className="form-control" placeholder="Enter email" onChange={handleEmailChange}
           />
         </div>
         <div className="mb-3">
           <label name="password">Password</label>
-          <input 
-            value={password}
-            type="password"
-            className="form-control"
-            placeholder="Enter password"
+          <input value={password} type="password" className="form-control" placeholder="Enter password"
             onChange={handlePasswordChange}
           />
         </div>
@@ -59,7 +43,7 @@ export default function Login() {
           </div>
         </div>
         <div className="d-grid">
-          <button type="submit" className="btn btn-primary">
+          <button onSubmit={login} type="submit" className="btn btn-primary">
             Submit
           </button>
         </div>

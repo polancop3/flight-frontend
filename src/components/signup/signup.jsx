@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 export default function SignUp() {
   const[firstName, setFirstname] = useState("")
   const[lastName, setlastname] = useState("")
@@ -19,6 +19,10 @@ export default function SignUp() {
 
   function handlePasswordChange(e) {
     setPassword(e.target.value)
+  }
+
+  function handleSubmit() {
+
   }
   console.log(`fname ${firstName} lname ${lastName} email: ${email} password ${password}`)
 
