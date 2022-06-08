@@ -6,6 +6,12 @@ export default function Flights() {
     return (
       <div>
         <div>flight 12345</div>
+        <div>flight 12345</div>
+        <div>flight 12345</div>
+        <div>flight 12345</div>
+        <div>flight 12345</div>
+        <div>flight 12345</div>
+        <div>flight 12345</div>
       </div>
     );
 }

@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import axios from 'axios'
+
 export default function SignUp() {
   const[firstName, setFirstname] = useState("")
   const[lastName, setlastname] = useState("")
   const[email, setEmail] = useState("")
   const[password, setPassword] = useState("")
-
+  const url ="http://localhost:8080/auth/create-user"
   function handlefirstNameChange(e) {
     setFirstname(e.target.value)
   }
@@ -21,10 +23,19 @@ export default function SignUp() {
     setPassword(e.target.value)
   }
 
-  function handleSubmit() {
-
-  }
-  console.log(`fname ${firstName} lname ${lastName} email: ${email} password ${password}`)
+  function handleSignup(e) {
+    e.preventDefault();
+ 
+     axios.post(url, {
+       "email": email,
+       "password": password
+     })
+     .then((response) => {
+       console.log(response);
+     }, (error) => {
+       console.log(error);
+     });
+    }
 
     return (
       <form>
@@ -51,7 +62,7 @@ export default function SignUp() {
           />
         </div>
         <div className="d-grid">
-          <button type="submit" className="btn btn-primary">
+          <button onClick={handleSignup} type="submit" className="btn btn-primary">
             Sign Up
           </button>
         </div>
@@ -60,4 +71,4 @@ export default function SignUp() {
         </p>
       </form>
     )
-}   
+} 

@@ -1,27 +1,40 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/auth-context'
+import axios from 'axios';
+const url = "http://localhost:8080/auth/sign-in"
 
 export default function Login() {
-  const { login, logout, loggedIn} = useAuth();
-  const[email, setEmail] = useState("")
-  const[password, setPassword] = useState("")
+  const {login} = useAuth();
+  const[email, setEmail] = useState("");
+  const[password, setPassword] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    console.log("email= "+email)  
   }
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value)
-    console.log("pass= "+ password)  
+  }
+
+  const handleLogin = (e) => {
+    e.preventDefault()
+    axios.post(url, {
+      "email": email,
+      "password": password
+     })
+     .then((response) => {
+       console.log(response);
+     }, (error) => {
+       console.log(error);
+     });
   }
 
   return (
-      <form>
+      <form onSubmit={ handleLogin }>
         <h3>Sign In</h3>
         <div className="mb-3">
           <label name="email">Email</label>
-          <input value={email} type="email" className="form-control" placeholder="Enter email" onChange={handleEmailChange}
+          <input value={email} type="email" className="form-control" placeholder="Enter email" onChange={ handleEmailChange }
           />
         </div>
         <div className="mb-3">
@@ -43,7 +56,7 @@ export default function Login() {
           </div>
         </div>
         <div className="d-grid">
-          <button onSubmit={login} type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary" >
             Submit
           </button>
         </div>

@@ -9,7 +9,7 @@ export function AuthenticatedRoutes() {
      return (
         <Router>
             <div className="app">
-                <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+              <nav className="navbar navbar-expand-lg navbar-light fixed-top">
               <div className="container">
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                   <ul className="navbar-nav ml-auto">
@@ -22,7 +22,6 @@ export function AuthenticatedRoutes() {
                 </div>
               </div>
             </nav>
-
             <div className="auth-wrapper">
                 <div className="auth-inner">
                     <Routes>
