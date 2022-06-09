@@ -61,11 +61,27 @@ const useAPI = () => {
         })
     }
 
+    const getAllTrips = () => {
+        return performAPIRequest({
+            url: "/trip",
+            method: HTTP_METHODS.GET,
+        })
+    }
+
+    const deleteTripById = (id) => {
+        return performAPIRequest({
+            url: `/trip/${id}`,
+            method: HTTP_METHODS.DELETE,
+        })
+    }
+
     return {
         getAllFlights,
         deleteFlightById,
         updateFlightById,
-        createFlight
+        createFlight,
+        getAllTrips,
+        deleteTripById
     }
 }
 

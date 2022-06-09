@@ -5,14 +5,14 @@ import useAPI from '../../hooks/useAPI';
 const Flight = ({ flight }) => {
   return (
     <div>
-      {flight.flightNo},{flight.duration},{flight.source},{flight.destination}
+      {flight.flightNo},{flight.duration},{flight.source},{flight.destination}<button>select flight</button>
     </div>
   )
 }
 
 export default function Flights() {
   const [flights, setFlights] = useState([]);
-  const { getAllFlights } = useAPI()
+  const { getAllFlights} = useAPI()
 
   useEffect(() => {
     console.log("here")
