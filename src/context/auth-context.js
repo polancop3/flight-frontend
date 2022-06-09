@@ -1,31 +1,29 @@
-import React, { createContext, useState, useEffect } from "react";
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+import React, { createContext } from "react";
+import useStorage from "../hooks/useStorage";
+import axios from "axios";
 
 const AuthContext = createContext({});
 
 const AuthProvider = (props) => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [idToken, setIdToken] = useStorage("idToken", "")
 
-  useEffect(() => {
-    // Pull saved login state from localStorage / AsyncStorage
-  }, []);
+  const login = (email, password) => {
+    const url = "http://localhost:8080/auth/sign-in"
 
-  const login = (e) => {
-      e.preventDefault();
-     setLoggedIn(true);
+    return axios
+     .post(url, { email, password })
+     .then((response) => setIdToken(response.data.idToken))
   };
 
   const logout = () => {
-    sleep(2000).then(() => setLoggedIn(false));
+    setIdToken("");
   };
 
   const authContextValue = {
     login,
-    loggedIn,
-    logout
+    logout,
+    idToken,
+    loggedIn: !!idToken 
   };
 
   return <AuthContext.Provider value={authContextValue} {...props} />;

@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/auth-context'
-import axios from 'axios';
-const url = "http://localhost:8080/auth/sign-in"
 
 export default function Login() {
-  const {login} = useAuth();
+  const { login } = useAuth();
   const[email, setEmail] = useState("");
   const[password, setPassword] = useState("");
 
@@ -13,20 +11,13 @@ export default function Login() {
   }
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value)
+    setPassword(e.target.value);
   }
 
-  const handleLogin = (e) => {
-    e.preventDefault()
-    axios.post(url, {
-      "email": email,
-      "password": password
-     })
-     .then((response) => {
-       console.log(response);
-     }, (error) => {
-       console.log(error);
-     });
+  const handleLogin = (event) => {
+    event.preventDefault();
+    login(email, password)
+    .catch((error) => console.error(error));
   }
 
   return (

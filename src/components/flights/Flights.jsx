@@ -1,17 +1,28 @@
-import React, { useState} from 'react'
-import axios from 'axios';
-const url = 'http://localhost:8080/flight';
+import React, { useState } from 'react'
+import { useEffect } from 'react';
+import useAPI from '../../hooks/useAPI';
+
+const Flight = ({ flight }) => {
+  return (
+    <div>
+      {flight.flightNo},{flight.duration},{flight.source},{flight.destination}
+    </div>
+  )
+}
 
 export default function Flights() {
-    return (
+  const [flights, setFlights] = useState([]);
+  const { getAllFlights } = useAPI()
+
+  useEffect(() => {
+    console.log("here")
+    getAllFlights()
+    .then((flights) => setFlights(flights))
+  }, [])
+
+  return (
       <div>
-        <div>flight 12345</div>
-        <div>flight 12345</div>
-        <div>flight 12345</div>
-        <div>flight 12345</div>
-        <div>flight 12345</div>
-        <div>flight 12345</div>
-        <div>flight 12345</div>
+       { flights.map((flight, index) => <Flight flight={flight} key={index}/>) }
       </div>
     );
 }
