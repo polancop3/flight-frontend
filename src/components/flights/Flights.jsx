@@ -3,9 +3,18 @@ import { useEffect } from 'react';
 import useAPI from '../../hooks/useAPI';
 
 const Flight = ({ flight }) => {
+  let obj = {"flightId": flight.id}
+  const {saveTrip} = useAPI(obj) 
+ 
   return (
     <div>
-      {flight.flightNo},{flight.duration},{flight.source},{flight.destination}<button>select flight</button>
+      <ul>
+      <li>FlightNo: {flight.flightNo}</li>
+      <li>Flight duration: {flight.duration}</li>
+      <li>Flight source: {flight.source}</li>
+      <li>Flight Destination: {flight.destination}</li>
+      <button onClick={saveTrip}>select flight</button>
+      </ul> 
     </div>
   )
 }
@@ -15,8 +24,7 @@ export default function Flights() {
   const { getAllFlights} = useAPI()
 
   useEffect(() => {
-    console.log("here")
-    getAllFlights()
+     getAllFlights()
     .then((flights) => setFlights(flights))
   }, [])
 

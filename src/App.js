@@ -6,7 +6,7 @@ import { AuthenticatedRoutes, UnauthenticatedRoutes } from './routes'
 
 function App() {
   const { loggedIn } = useAuth();
-  console.log(loggedIn)
+  
 
   return loggedIn? <AuthenticatedRoutes/> : <UnauthenticatedRoutes/>
 }

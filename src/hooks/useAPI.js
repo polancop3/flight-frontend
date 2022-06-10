@@ -75,13 +75,22 @@ const useAPI = () => {
         })
     }
 
+    const saveTrip = (data) => {
+        return performAPIRequest({
+            url: "/trip",
+            method: HTTP_METHODS.POST,
+            data
+        })
+    }
+
     return {
         getAllFlights,
         deleteFlightById,
         updateFlightById,
         createFlight,
         getAllTrips,
-        deleteTripById
+        deleteTripById,
+        saveTrip
     }
 }
 

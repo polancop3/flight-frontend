@@ -1,24 +1,29 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { Button } from "react-bootstrap";
 import Login from './components/login/Login'
 import SignUp from './components/signup/Signup';
 import Flights from './components/flights/Flights';
 import Trip from './components/trip/Trips'
+import Home from "./components/home/Home";
 import { useAuth } from "./context/auth-context";
-
-
 export function AuthenticatedRoutes() {
   const { logout } = useAuth();
      return (
         <Router>
-            <div className="app">
+            <div className="App">
               <nav className="navbar navbar-expand-lg navbar-light fixed-top">
               <div className="container">
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                   <ul className="navbar-nav ml-auto">
+                  <li className="nav-item">
+                    <Link className="nav-link" to={'/home'}>
+                        Home
+                    </Link>
+                    </li>
                     <li className="nav-item">
-                    <Link className="nav-link" to={'/Flights'}>
-                         Flight
+                    <Link className="nav-link" to={'/flights'}>
+                         Flights
                     </Link>
                     </li>
                     <li className="nav-item">
@@ -26,7 +31,7 @@ export function AuthenticatedRoutes() {
                          My trips
                     </Link>
                     </li>
-                    <li><button onClick={logout}>log out</button></li>
+                    <div><li><Button variant="danger" onClick={logout}>log out</Button></li></div>
                   </ul>
                 </div>
               </div>
@@ -36,6 +41,7 @@ export function AuthenticatedRoutes() {
                     <Routes>
                         <Route path="/flights" element={<Flights />} />
                         <Route path="/trip" element={<Trip />} />
+                        <Route path="/home" element={<Home />} />
                     </Routes> 
                 </div>
             </div>
