@@ -1,7 +1,7 @@
  import React from "react";
  const Home = () => {
     return(
-        <div>Welcome to Dominican airlines</div>
+        <div><h3>Welcome to Dominican airlines</h3></div>
     )
 }
 

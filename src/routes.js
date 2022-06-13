@@ -6,7 +6,9 @@ import SignUp from './components/signup/Signup';
 import Flights from './components/flights/Flights';
 import Trip from './components/trip/Trips'
 import Home from "./components/home/Home";
+import Booking from './components/booking/Booking'
 import { useAuth } from "./context/auth-context";
+
 export function AuthenticatedRoutes() {
   const { logout } = useAuth();
      return (
@@ -19,6 +21,11 @@ export function AuthenticatedRoutes() {
                   <li className="nav-item">
                     <Link className="nav-link" to={'/home'}>
                         Home
+                    </Link>
+                    </li>
+                    <li className="nav-item">
+                    <Link className="nav-link" to={'/book-a-flight'}>
+                         Book a flight
                     </Link>
                     </li>
                     <li className="nav-item">
@@ -39,6 +46,7 @@ export function AuthenticatedRoutes() {
             <div className="auth-wrapper">
                 <div className="auth-inner">
                     <Routes>
+                        <Route path="/book-a-flight" element={<Booking />} />
                         <Route path="/flights" element={<Flights />} />
                         <Route path="/trip" element={<Trip />} />
                         <Route path="/home" element={<Home />} />

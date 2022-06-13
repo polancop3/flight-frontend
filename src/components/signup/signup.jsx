@@ -7,6 +7,7 @@ export default function SignUp() {
   const[email, setEmail] = useState("")
   const[password, setPassword] = useState("")
   const url ="http://localhost:8080/auth/create-user"
+  
   function handlefirstNameChange(e) {
     setFirstname(e.target.value)
   }
@@ -32,6 +33,7 @@ export default function SignUp() {
      })
      .then((response) => {
        console.log(response);
+       alert("Registration complete! please sign in.")
      }, (error) => {
        console.log(error);
      });
@@ -66,9 +68,6 @@ export default function SignUp() {
             Sign Up
           </button>
         </div>
-        <p className="forgot-password text-right">
-          Already registered <a href="/sign-in">sign in?</a>
-        </p>
       </form>
     )
 } 

@@ -90,7 +90,7 @@ const useAPI = () => {
         createFlight,
         getAllTrips,
         deleteTripById,
-        saveTrip
+        saveTrip,
     }
 }
 

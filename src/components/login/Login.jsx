@@ -17,7 +17,7 @@ export default function Login() {
   const handleLogin = (event) => {
     event.preventDefault();
     login(email, password)
-    .catch((error) => alert("Wrong Password or email"));
+    .catch((error) => alert("Unable to log you in! possible issues: Wrong Password or email"));
   }
 
   return (

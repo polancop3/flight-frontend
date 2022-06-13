@@ -2,13 +2,19 @@ import useAPI from "../../hooks/useAPI";
 import { useState } from "react";
 import { useEffect } from "react";
 
+
+
 const Trip = ({ trip }) => {
-  const { deleteTripByid } = useAPI(trip.flightId);
+  const { deleteTripByid } = useAPI()
+  
+  const handletripDeletion = (e) => {
+    e.preventDefault()
+    deleteTripByid(trip.flightId)
+  }
     return(
-        <div>{trip.flightId}<button onClick={deleteTripByid}>cancel trip</button></div>
+        <div>{trip.flightId}<button onClick={handletripDeletion}>cancel trip</button></div>
     )
 }
-
 
 const Trips = () => {
     const [trips, setTrips] = useState([]);
